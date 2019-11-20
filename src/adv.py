@@ -53,3 +53,12 @@ newPlayer = Player("David", "outside")
 #
 # If the user enters "q", quit the game.
 
+print(room[newPlayer.current_room])
+
+selection = input("Choose a direction: ")
+
+while True:
+    try: 
+        
+    except:
+        
