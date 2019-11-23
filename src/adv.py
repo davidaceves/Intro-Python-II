@@ -40,7 +40,8 @@ room['treasure'].s_to = room['narrow']
 
 # Make a new player object that is currently in the 'outside' room.
 
-newPlayer = Player("David", "outside")
+newPlayer = Player("David", room['outside'])
+newRoom = Room("place", "description")
 
 # Write a loop that:
 #
@@ -53,12 +54,31 @@ newPlayer = Player("David", "outside")
 #
 # If the user enters "q", quit the game.
 
-print(room[newPlayer.current_room])
+def movePlayer(direction):
+    direction_to = direction + "_to"
 
-selection = input("Choose a direction: ")
+    if (selection == direction):
+        if(hasattr(newPlayer.current_room, direction_to)):
+            newPlayer.current_room = getattr(newPlayer.current_room, direction_to)
+
+            print(newPlayer.current_room)
+          
+        else: 
+            print("Try somewhere else...")
+
+
+print(newPlayer.current_room)
+
 
 while True:
-    try: 
-        
-    except:
-        
+    selection = input("Choose a direction: ")
+
+    if (selection == "q"):
+        print("Goodbye.")
+        break
+
+    movePlayer(selection)
+
+   
+
+    
