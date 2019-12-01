@@ -5,21 +5,21 @@ from player import Player
 
 room = {
     'outside':  Room("Outside Cave Entrance",
-                     "North of you, the cave mount beckons"),
+                     "North of you, the cave mount beckons", ["Broken sword", "1 gold"]),
 
     'foyer':    Room("Foyer", """Dim light filters in from the south. Dusty
-passages run north and east."""),
+passages run north and east.""", ["Candle"]),
 
     'overlook': Room("Grand Overlook", """A steep cliff appears before you, falling
 into the darkness. Ahead to the north, a light flickers in
-the distance, but there is no way across the chasm."""),
+the distance, but there is no way across the chasm.""", ["Strange Amulet"]),
 
     'narrow':   Room("Narrow Passage", """The narrow passage bends here from west
-to north. The smell of gold permeates the air."""),
+to north. The smell of gold permeates the air.""", ["Skull"]),
 
     'treasure': Room("Treasure Chamber", """You've found the long-lost treasure
 chamber! Sadly, it has already been completely emptied by
-earlier adventurers. The only exit is to the south."""),
+earlier adventurers. The only exit is to the south.""", ["Faded Map"]),
 }
 
 
@@ -40,8 +40,7 @@ room['treasure'].s_to = room['narrow']
 
 # Make a new player object that is currently in the 'outside' room.
 
-newPlayer = Player("David", room['outside'])
-newRoom = Room("place", "description")
+newPlayer = Player("David", room['outside'], ["short sword"])
 
 # Write a loop that:
 #
@@ -57,7 +56,7 @@ newRoom = Room("place", "description")
 def movePlayer(direction):
     direction_to = direction + "_to"
 
-    if (selection == direction):
+    if (selectDirection == direction):
         if(hasattr(newPlayer.current_room, direction_to)):
             newPlayer.current_room = getattr(newPlayer.current_room, direction_to)
 
@@ -71,13 +70,14 @@ print(newPlayer.current_room)
 
 
 while True:
-    selection = input("Choose a direction: ")
+    selectItem = input("Take item: ")
+    selectDirection = input("Choose a direction: ")
 
-    if (selection == "q"):
+    if (selectDirection == "q"):
         print("Goodbye.")
         break
 
-    movePlayer(selection)
+    movePlayer(selectDirection)
 
    
 
